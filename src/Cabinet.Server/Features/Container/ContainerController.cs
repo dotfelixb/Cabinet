@@ -22,7 +22,7 @@ namespace Cabinet.Server.Features.Container
         {
             var query = new GetContainerQuery(containername);
             var result = await _mediator.Send(query);
-            return Ok(new { success = true, payload = result } );
+            return ContainerResponse(result);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Cabinet.Server.Features.Container
         {
             var command = new CreateContainerCommand(containername);
             var result = await _mediator.Send(command);
-            return Ok(new { success = true, payload = result });
+            return ContainerResponse(result);
         }
     }
 }
