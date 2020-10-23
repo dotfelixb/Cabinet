@@ -43,6 +43,8 @@ namespace Cabinet.Server.Features.Document
                     Name = file.Name,
                     Path = file.FullName,
                     Size = file.Length,
+                    ContainerName = request.ContainerName,
+                    DocumentName = request.DocumentName,
                     MimeType = file.Extension.ToMimeType(cs.MimeTypes),
                     CreatedAt = file.CreationTimeUtc,
                 };

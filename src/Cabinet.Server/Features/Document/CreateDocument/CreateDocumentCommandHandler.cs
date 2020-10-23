@@ -30,7 +30,7 @@ namespace Cabinet.Server.Features.Document
                     return Result.Fail<CabinetFileInfo>(new Error(message));
                 }
 
-                var fPath = Path.Combine(dPath, request.DocumentName ?? request.FromFile.Name);
+                var fPath = Path.Combine(dPath, request.DocumentName );
 
                 var fileExist = File.Exists(fPath);
 
@@ -58,9 +58,11 @@ namespace Cabinet.Server.Features.Document
 
                 var cfInfo = new CabinetFileInfo
                 {
-                    Name = request.FromFile.Name,
+                    Name = request.DocumentName,
                     Path = fPath,
                     Size = request.FromFile.Length,
+                    ContainerName = request.ContainerName,
+                    DocumentName = request.DocumentName,
                     MimeType = request.FromFile.ContentType,
                     CreatedAt = DateTime.UtcNow,
                 };

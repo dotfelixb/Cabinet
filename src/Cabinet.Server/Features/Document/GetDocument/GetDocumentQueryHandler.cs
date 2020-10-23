@@ -42,6 +42,8 @@ namespace Cabinet.Server.Features.Document
                 {
                     Name = request.DocumentName,
                     Path = fPath,
+                    ContainerName = request.ContainerName,
+                    DocumentName = request.DocumentName,
                     MimeType = file.Extension.ToMimeType(cs.MimeTypes),
                 };
 
