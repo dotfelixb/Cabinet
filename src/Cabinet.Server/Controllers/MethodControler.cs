@@ -11,11 +11,11 @@ namespace Cabinet.Server.Controllers
         {
             if (result.IsSuccess)
             {
-                return Ok(new { success=result.IsSuccess, payload = result.Value });
+                return Ok(new { success = result.IsSuccess, payload = result.Value });
             }
             else
             {
-                return Ok(new { success=false, reasons = result.Reasons.Select(r=> r.Message) });
+                return Ok(new { success = false, reasons = result.Reasons.Select(r => r.Message) });
             }
         }
     }

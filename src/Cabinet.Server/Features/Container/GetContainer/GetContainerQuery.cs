@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Cabinet.Server.Features.Container
 {
-    public class GetContainerQuery : IRequest<Result<ContainerInfo>>
+    public class GetContainerQuery : IRequest<Result<CabinetFileInfo>>
     {
         public string ContainerName { get; set; }
 

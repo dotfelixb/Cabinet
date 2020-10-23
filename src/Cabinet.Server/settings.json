@@ -1,3 +1,5 @@
 {
-  "Datadir": "C:/Cabinet.Datadir"
+  "Datadir": "C:/Cabinet.Datadir",
+  "MimeTypes": {
+  }
 }

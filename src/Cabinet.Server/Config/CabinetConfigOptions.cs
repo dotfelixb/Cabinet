@@ -1,7 +1,6 @@
 ﻿using Cabinet.Server.Extensions;
 using System;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -15,7 +14,7 @@ namespace Cabinet.Server.Config
     }
 
     public class CabinetConfigOptions
-    { 
+    {
         [Description("Directory where Cabinet Data is stored")]
         [DefaultValue(@"/var/cabinet.datadir;C:/Cabinet.DataDir")]
         public string DataDir { get; set; }

@@ -1,6 +1,5 @@
 ﻿using Cabinet.Server.Extensions;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.IO;
 
 namespace Cabinet.Server.Config
@@ -18,9 +17,11 @@ namespace Cabinet.Server.Config
         }
 
         #region Settings Properties
-        public DirectoryInfo    DirectoryInfo{ get; set; }
+
+        public DirectoryInfo DirectoryInfo { get; set; }
         public string DataDir { get; }
-        public long FlashDuration { get; } 
-        #endregion
+        public long FlashDuration { get; }
+
+        #endregion Settings Properties
     }
 }
