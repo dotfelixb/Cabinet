@@ -1,4 +1,5 @@
 ﻿using Cabinet.Server.Config;
+using Cabinet.Server.Extensions;
 using Cabinet.Server.Model;
 using FluentResults;
 using MediatR;
@@ -35,12 +36,13 @@ namespace Cabinet.Server.Features.Document
                     return Result.Fail<CabinetFileInfo>(new Error(message));
                 }
 
+                var file = new FileInfo(fPath);
+
                 var cfInfo = new CabinetFileInfo
                 {
-                    CreatedAt = File.GetCreationTimeUtc(fPath),
                     Name = request.DocumentName,
-                    MimeType = Path.GetExtension(fPath),
-                    Path = fPath
+                    Path = fPath,
+                    MimeType = file.Extension.ToMimeType(cs.MimeTypes),
                 };
 
                 return Result.Ok(cfInfo);

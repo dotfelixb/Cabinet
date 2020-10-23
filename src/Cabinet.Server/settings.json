@@ -1,5 +1,10 @@
 {
   "Datadir": "C:/Cabinet.Datadir",
   "MimeTypes": {
+    ".pdf": "application/pdf",
+    ".png": "image/png",
+    ".txt": "text/plain",
+    ".xls": "tapplication/vnd.ms-excel",
+    ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
   }
 }

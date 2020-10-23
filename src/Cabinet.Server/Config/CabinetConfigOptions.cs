@@ -1,5 +1,6 @@
 ﻿using Cabinet.Server.Extensions;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -22,6 +23,10 @@ namespace Cabinet.Server.Config
         [Description("Flash document lifespan duration")]
         [DefaultValue(86400L)]
         public long FlashDuration { get; set; }
+
+        [Description("Mime Types supported by Cabinet")]
+        [DefaultValue("")]
+        public Dictionary<string, string> MimeTypes { get; set; }
 
         public static object GetDefaultValue<T>(Expression<Func<CabinetConfigOptions, T>> expr)
         {

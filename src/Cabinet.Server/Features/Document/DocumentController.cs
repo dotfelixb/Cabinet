@@ -25,11 +25,17 @@ namespace Cabinet.Server.Features.Document
         {
             var query = new GetDocumentInfoQuery(containerName, documentName);
             var result = await _mediator.Send(query);
-            return Ok(new { success = true, payload = result });
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest();
+            }
+
+            return Ok(new { success = true, payload = result.Value });
         }
 
         /// <summary>
-        /// Get a document as a download
+        /// Get a document as download
         /// </summary>
         [HttpGet("document.get", Name = nameof(GetDocument))]
         public async Task<IActionResult> GetDocument(
@@ -45,13 +51,13 @@ namespace Cabinet.Server.Features.Document
             }
 
             var file = new FileStream(result.Value.Path, FileMode.Open);
-            return File(file, result.Value.MimeType, fileDownloadName: documentName);
+            return File(file, result.Value.MimeType, fileDownloadName: result.Value.Name);
         }
 
         /// <summary>
         /// Create document
         /// </summary>
-        [HttpGet("document.create", Name = nameof(CreateDocument))]
+        [HttpGet("document.upload", Name = nameof(CreateDocument))]
         public async Task<IActionResult> CreateDocument(
             [FromQuery] string containerName,
             [FromQuery] string documentName,
