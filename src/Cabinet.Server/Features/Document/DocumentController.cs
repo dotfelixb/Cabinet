@@ -1,7 +1,9 @@
 ﻿using Cabinet.Server.Controllers;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cabinet.Server.Features.Document
@@ -57,16 +59,23 @@ namespace Cabinet.Server.Features.Document
         /// <summary>
         /// Create document
         /// </summary>
-        [HttpGet("document.upload", Name = nameof(CreateDocument))]
+        [HttpPost("document.create", Name = nameof(CreateDocument))]
         public async Task<IActionResult> CreateDocument(
+            IFormFile file,
             [FromQuery] string containerName,
             [FromQuery] string documentName,
-            [FromQuery] bool overRide,
-            [FromQuery] string contentType)
+            [FromQuery] bool overRide)
         {
-            var query = new CreateDocumentCommand(containerName, documentName);
+            var query = new CreateDocumentCommand(file, containerName, documentName, overRide);
             var result = await _mediator.Send(query);
-            return Ok(new { success = true, payload = result });
+
+            if (!result.IsSuccess)
+            {
+                var reasons = result.Errors.ToArray().Select(r => r.Message);
+                return BadRequest(new {success = false, reasons });
+            }
+
+            return Ok(new { success = true, payload = result.Value });
         }
     }
 }

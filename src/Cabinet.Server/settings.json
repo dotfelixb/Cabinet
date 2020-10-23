@@ -1,6 +1,8 @@
 {
   "Datadir": "C:/Cabinet.Datadir",
   "MimeTypes": {
+    ".jpeg": "image/jpeg",
+    ".jpg": "image/jpeg",
     ".pdf": "application/pdf",
     ".png": "image/png",
     ".txt": "text/plain",
