@@ -17,7 +17,7 @@ namespace Cabinet.Server.Config
     public class CabinetConfigOptions
     {
         [Description("Directory where Cabinet Data is stored")]
-        [DefaultValue(@"/var/cabinet.datadir;C:/Cabinet.DataDir")]
+        [DefaultValue(@"/var/cabinet.datadir;C:\\Cabinet.DataDir")]
         public string DataDir { get; set; }
 
         [Description("Flash document lifespan duration")]

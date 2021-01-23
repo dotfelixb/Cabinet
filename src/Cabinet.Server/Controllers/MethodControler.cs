@@ -7,7 +7,7 @@ namespace Cabinet.Server.Controllers
     [Route("methods")]
     public class MethodControler : ControllerBase
     {
-        public OkObjectResult ContainerResponse<T>(Result<T> result)
+        public ObjectResult ResultResponse<T>(Result<T> result)
         {
             if (result.IsSuccess)
             {
@@ -15,8 +15,18 @@ namespace Cabinet.Server.Controllers
             }
             else
             {
-                return Ok(new { success = false, reasons = result.Reasons.Select(r => r.Message) });
+                return NotFound(new { success = false, reasons = result.Reasons.Select(r => r.Message) });
             }
+        }
+
+        public BadRequestObjectResult RequiredBadResponse(string reason = "")
+        {
+            return BadRequest(new { reason });
+        }
+
+        public BadRequestObjectResult RequiredBadResponse(string[] reasons)
+        {
+            return BadRequest(new { reasons });
         }
     }
 }
